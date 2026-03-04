@@ -11,7 +11,7 @@ const pageview = () => {
   if (typeof window !== 'undefined' && window.fbq) {
     window.fbq('track', 'PageView');
   }
-};
+}; 
 
 const FacebookPixel = () => {
   const pathname = usePathname();
