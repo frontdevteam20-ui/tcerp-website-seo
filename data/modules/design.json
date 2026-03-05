@@ -74,6 +74,24 @@
               "answer": " The Design module helps manage product blueprints, engineering drawings, version control and approvals in the ERP environment."
             }
           ]
-        }
+        },
+  "videoSchema": {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": "Design Module - Techcloud ERP",
+    "description": "Techcloud ERP Design Module helps manage product design workflows, revisions, approvals and collaboration efficiently.",
+    "thumbnailUrl": "https://techclouderp.com/images/design-thumbnail.jpg",
+    "uploadDate": "2026-02-23",
+    "contentUrl": "https://res.cloudinary.com/techclouderp/video/upload/v1749719811/crm-module_htem2g.webm",
+    "embedUrl": "https://techclouderp.com/all-modules/design/",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Techcloud ERP",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://techclouderp.com/images/logo.png"
+      }
+    }
   }
+}
   

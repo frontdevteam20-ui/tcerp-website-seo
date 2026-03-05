@@ -49,6 +49,8 @@ function EditBlogContent() {
 
   const [title, setTitle] = useState("");
   const [slug, setSlug] = useState("");
+  const [authorImage, setAuthorImage] = useState("https://res.cloudinary.com/techclouderp/image/upload/v1770289281/blogimg_mhjwse.png");
+  const [blogImage, setBlogImage] = useState("");
   const [brocherText, setBrocherText] = useState("");
   const [brocherImage, setBrocherImage] = useState("");
   const [Conclusion, setConclusion] = useState("");
@@ -66,7 +68,7 @@ function EditBlogContent() {
   const breadcrumbs = [
     { label: 'Home', link: '/', icon: FaHome },
     { label: 'Blogs', link: '/blogs' },
-    { label: 'Blog List', link: '/blogs/blogs/blog-list' },
+    { label: 'Blog List', link: '/blogs/admin-blogs/blog-list' },
     { label: 'Edit Blog', link: null }
   ];
 
@@ -91,6 +93,8 @@ function EditBlogContent() {
           if (isMounted) {
             setTitle(blogData.title || "");
             setSlug(blogData.slug || "");
+            setAuthorImage(blogData.authorImage || "https://res.cloudinary.com/techclouderp/image/upload/v1770289281/blogimg_mhjwse.png");
+            setBlogImage(blogData.blogImage || "");
             setBrocherText(blogData.brocher?.text || "");
             setBrocherImage(blogData.brocher?.imageUrl || "");
             setConclusion(blogData.Conclusion || "");
@@ -213,6 +217,8 @@ function EditBlogContent() {
       await updateDoc(blogRef, {
         title,
         slug: slug || createSlug(title),
+        authorImage,
+        blogImage,
         brocher: {
           text: brocherText,
           imageUrl: brocherImage,
@@ -229,7 +235,7 @@ function EditBlogContent() {
         updatedAt: new Date(),
       });
 
-      router.push("/blogs/blogs/blog-list");
+      router.push("/blogs/admin-blogs/blog-list");
     } catch (error) {
       console.error("Error updating blog:", error);
       setError("Failed to update blog. Please try again.");
@@ -279,9 +285,9 @@ function EditBlogContent() {
               <h3 style={{ color: '#dc2626', marginBottom: '1rem' }}>Error</h3>
               <p style={{ color: '#7f1d1d', marginBottom: '1.5rem' }}>{error}</p>
               <Link
-                href="/blogs/blogs/blog-list"
+                href="/blogs/admin-blogs/blog-list"
                 style={{
-                  backgroundColor: '#2563eb',
+                  backgroundColor: '#05a7cc',
                   color: 'white',
                   padding: '0.75rem 1.5rem',
                   borderRadius: '0.375rem',
@@ -309,7 +315,7 @@ function EditBlogContent() {
       <div style={{ minHeight: '60vh', backgroundColor: '#f9fafb', padding: '2rem' }}>
         <div style={{ maxWidth: '800px', margin: '0 auto' }}>
           <Link
-            href="/blogs/blogs/blog-list"
+            href="/blogs/admin-blogs/blog-list"
             style={{
               display: 'inline-flex',
               alignItems: 'center',
@@ -408,6 +414,32 @@ function EditBlogContent() {
                     />
                     <p style={{ fontSize: '0.75rem', color: '#6b7280', marginTop: '0.25rem' }}>
                       Auto-generated from title. Used in URL.
+                    </p>
+                  </div>
+
+                  <div>
+                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500', color: '#374151', fontSize: '0.875rem' }}>
+                      Blog Image URL
+                    </label>
+                    <input
+                      type="url"
+                      placeholder="https://example.com/blog-image.jpg"
+                      value={blogImage}
+                      onChange={(e) => setBlogImage(e.target.value)}
+                      style={{
+                        width: '100%',
+                        padding: '0.75rem 1rem',
+                        border: '2px solid #e5e7eb',
+                        borderRadius: '0.5rem',
+                        fontSize: '1rem',
+                        transition: 'all 0.2s ease',
+                        backgroundColor: 'white'
+                      }}
+                      onFocus={(e) => e.target.style.borderColor = '#3b82f6'}
+                      onBlur={(e) => e.target.style.borderColor = '#e5e7eb'}
+                    />
+                    <p style={{ fontSize: '0.75rem', color: '#6b7280', marginTop: '0.25rem' }}>
+                      Main blog post image (optional).
                     </p>
                   </div>
                 </div>
@@ -1231,7 +1263,7 @@ function EditBlogContent() {
               {/* Form Actions */}
               <div style={{ display: 'flex', gap: '1rem', justifyContent: 'flex-end', marginTop: '2rem' }}>
                 <Link
-                  href="/blogs/blogs/blog-list"
+                  href="/blogs/admin-blogs/blog-list"
                   style={{
                     padding: '0.75rem 1.5rem',
                     border: '2px solid #e5e7eb',

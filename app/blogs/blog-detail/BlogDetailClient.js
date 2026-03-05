@@ -135,7 +135,7 @@ function BlogDetailContent() {
   const getShareUrl = () => {
     const slug = searchParams.get('slug');
     const id = searchParams.get('id');
-    const baseUrl = 'https://techclouderp.com/blogs/blog-detail';
+    const baseUrl = 'https://techclouderp.com/admin-blogs/blog-detail';
     return slug ? `${baseUrl}?slug=${slug}` : `${baseUrl}?id=${id}`;
   };
 
@@ -177,7 +177,7 @@ function BlogDetailContent() {
           <h1 className="text-4xl font-bold text-gray-800 mb-4">Blog Not Found</h1>
           <p className="text-gray-600 mb-8">The blog post you're looking for doesn't exist.</p>
           <button 
-            onClick={() => router.push('/blogs/blog-list')}
+            onClick={() => router.push('/admin-blogs/blog-list')}
             className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
           >
             Back to Blog List
@@ -299,7 +299,7 @@ function BlogDetailContent() {
           <nav className="flex items-center space-x-2 text-sm text-gray-600 mb-8">
             <FaHome className="cursor-pointer hover:text-blue-600" onClick={() => router.push('/')} />
             <span>/</span>
-            <span className="cursor-pointer hover:text-blue-600" onClick={() => router.push('/blogs/blog-list')}>Blogs</span>
+            <span className="cursor-pointer hover:text-blue-600" onClick={() => router.push('/admin-blogs/blog-list')}>Blogs</span>
             <span>/</span>
             <span className="text-gray-800 font-medium">{blog.title}</span>
           </nav>
@@ -416,9 +416,9 @@ function BlogDetailContent() {
                           const slug = relatedBlog.slug;
                           const id = relatedBlog.id;
                           if (slug) {
-                            router.push(`/blogs/blog-detail?slug=${slug}`);
+                            router.push(`/admin-blogs/blog-detail?slug=${slug}`);
                           } else {
-                            router.push(`/blogs/blog-detail?id=${id}`);
+                            router.push(`/admin-blogs/blog-detail?id=${id}`);
                           }
                         }}
                         className="flex items-center gap-2 text-blue-600 hover:text-blue-800 font-medium"

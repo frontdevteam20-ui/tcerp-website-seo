@@ -57,7 +57,7 @@ export default function CreateBlog() {
 
       await addDoc(collection(blogDb, "blog"), blogData);
 
-      router.push("/blogs/blogs/blog-list");
+      router.push("/blogs/admin-blogs/blog-list");
     } catch (error) {
       console.error("Error creating blog:", error);
       setIsSubmitting(false);
@@ -70,7 +70,7 @@ export default function CreateBlog() {
       <PageHeader />
       <div style={{ maxWidth: '4xl', margin: '0 auto', padding: '0 1rem' }}>
         <Link
-          href="/blogs/blogs/blog-list"
+          href="/blogs/admin-blogs/blog-list"
           style={{
             display: 'inline-flex',
             alignItems: 'center',

@@ -82,6 +82,23 @@
         "answer": " The Point of Sale (POS) module enables real-time billing, barcode scanning, customer discounts and cashier management at retail counters."
       }
     ]
+  },
+  "videoSchema": {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": "POS Module - Techcloud ERP",
+    "description": "Techcloud ERP POS Module helps manage billing, sales tracking, inventory updates and customer transactions in real-time.",
+    "thumbnailUrl": "https://techclouderp.com/images/pos-thumbnail.jpg",
+    "uploadDate": "2026-02-28",
+    "contentUrl": "https://res.cloudinary.com/techclouderp/video/upload/v1749719811/crm-module_htem2g.webm",
+    "embedUrl": "https://techclouderp.com/all-modules/pos/",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Techcloud ERP",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://techclouderp.com/images/logo.png"
+      }
+    }
   }
-  }
-  
+}

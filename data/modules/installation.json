@@ -73,5 +73,23 @@
           "answer": "Yes, our mobile-responsive design allows field technicians to update installation status, submit reports, and access project details from any device, even offline."
         }
       ]
+    } ,
+  "videoSchema": {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": "Installation Module - Techcloud ERP",
+    "description": "Streamline product installation tracking, scheduling and customer coordination using Techcloud ERP.",
+    "thumbnailUrl": "https://techclouderp.com/images/installation-thumbnail.jpg",
+    "uploadDate": "2026-02-08",
+    "contentUrl": "https://res.cloudinary.com/techclouderp/video/upload/v1749719811/crm-module_htem2g.webm",
+    "embedUrl": "https://techclouderp.com/all-modules/installation/",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Techcloud ERP",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://techclouderp.com/images/logo.png"
+      }
     }
+  } 
 }

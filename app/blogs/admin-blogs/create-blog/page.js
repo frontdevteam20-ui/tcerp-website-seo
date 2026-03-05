@@ -63,6 +63,8 @@ export default function CreateBlog() {
 
   const [title, setTitle] = useState("");
   const [slug, setSlug] = useState("");
+  const [authorImage, setAuthorImage] = useState("https://res.cloudinary.com/techclouderp/image/upload/v1770289281/blogimg_mhjwse.png");
+  const [blogImage, setBlogImage] = useState("");
   const [brocherText, setBrocherText] = useState("");
   const [brocherImage, setBrocherImage] = useState("");
   const [Conclusion, setConclusion] = useState("");
@@ -137,6 +139,8 @@ export default function CreateBlog() {
       const blogData = {
         title,
         slug: slug || createSlug(title),
+        authorImage,
+        blogImage,
         brocher: {
           text: brocherText,
           imageUrl: brocherImage,
@@ -161,7 +165,7 @@ export default function CreateBlog() {
 
       await addDoc(collection(blogDb, "blog"), blogData);
 
-      router.push("/blogs/blogs/blog-list");
+      router.push("/blogs/admin-blogs/blog-list");
     } catch (error) {
       console.error("Error creating blog:", error);
       setIsSubmitting(false);
@@ -171,8 +175,21 @@ export default function CreateBlog() {
   return (
     <div>
       <Headers />
-      <PageHeader title="Create Blog" breadcrumbs={breadcrumbs} />
-      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 1rem' }}>
+      <style jsx>{`
+      .ep-page-header-section2{
+      min-height: 150px;
+      padding: 100px 0px;
+      }
+       @media (max-width: 768px) {
+      
+      .ep-page-header-section2{
+      min-height: 150px;
+      padding: 100px 0px;
+      }
+      `}</style>
+      {/* <PageHeader title="Create Blog" breadcrumbs={breadcrumbs} /> */}
+      <div className='ep-page-header-section2 position-relative'>
+      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 1rem' }} >
         
         {/* Login Form - Show when not authenticated */}
         {showLogin && (
@@ -194,10 +211,10 @@ export default function CreateBlog() {
               <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
                 <FaLock style={{ fontSize: '3rem', color: '#ff6b00', marginBottom: '1rem' }} />
                 <h2 style={{ fontSize: '1.8rem', fontWeight: 'bold', color: '#1e293b', marginBottom: '0.5rem' }}>
-                  Authentication Required
+                  Secure Login
                 </h2>
                 <p style={{ color: '#6b7280', fontSize: '1rem' }}>
-                  Please login to create blog posts
+                  Please login to Manage blog 
                 </p>
               </div>
 
@@ -256,7 +273,7 @@ export default function CreateBlog() {
                     border: '1px solid #fecaca',
                     borderRadius: '0.5rem',
                     padding: '0.75rem',
-                    color: '#dc2626',
+                    color: '#ef5226',
                     fontSize: '0.875rem'
                   }}>
                     {loginError}
@@ -266,7 +283,7 @@ export default function CreateBlog() {
                 <button
                   type="submit"
                   style={{
-                    backgroundColor: '#ff6b00',
+                    backgroundColor: '#ef5226',
                     color: 'white',
                     padding: '0.75rem 1.5rem',
                     borderRadius: '0.5rem',
@@ -276,8 +293,8 @@ export default function CreateBlog() {
                     transition: 'all 0.2s ease',
                     border: 'none'
                   }}
-                  onMouseOver={(e) => e.target.style.backgroundColor = '#ea580c'}
-                  onMouseOut={(e) => e.target.style.backgroundColor = '#ff6b00'}
+                  onMouseOver={(e) => e.target.style.backgroundColor = '#ef5226'}
+                  onMouseOut={(e) => e.target.style.backgroundColor = '#ef5226'}
                 >
                   Login to Create Blog
                 </button>
@@ -311,7 +328,7 @@ export default function CreateBlog() {
               marginBottom: '2rem' 
             }}>
               <Link
-                href="/blogs/blogs/blog-list"
+                href="/blogs/admin-blogs/blog-list"
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
@@ -346,12 +363,10 @@ export default function CreateBlog() {
             <div style={{ backgroundColor: 'white', borderRadius: '1rem', boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1)', overflow: 'hidden' }}>
               {/* Header */}
               <div style={{ backgroundColor: 'linear-gradient(135deg, #ff6b00 0%, #ff8c42 100%)', padding: '3rem 2rem', textAlign: 'center' }}>
-                <h1 style={{ fontSize: '2.5rem', fontWeight: 'bold', color: 'white', marginBottom: '0.5rem' }}>
+                <h1 style={{ fontSize: '2.5rem', fontWeight: 'bold', color: '#ef5226'  }}>
                   Create New Blog Post
                 </h1>
-                <p style={{ color: 'rgba(255, 255, 255, 0.9)', fontSize: '1.1rem' }}>
-                  Share your insights with the world
-                </p>
+                
               </div>
 
               {/* Form Container */}
@@ -417,6 +432,32 @@ export default function CreateBlog() {
                         />
                         <p style={{ fontSize: '0.75rem', color: '#6b7280', marginTop: '0.25rem' }}>
                           Auto-generated from title. Used in the URL.
+                        </p>
+                      </div>
+
+                      <div>
+                        <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500', color: '#374151', fontSize: '0.875rem' }}>
+                          Blog Image URL
+                        </label>
+                        <input
+                          type="url"
+                          placeholder="https://example.com/blog-image.jpg"
+                          value={blogImage}
+                          onChange={(e) => setBlogImage(e.target.value)}
+                          style={{
+                            width: '100%',
+                            padding: '0.75rem 1rem',
+                            border: '2px solid #e5e7eb',
+                            borderRadius: '0.5rem',
+                            fontSize: '1rem',
+                            transition: 'all 0.2s ease',
+                            backgroundColor: 'white'
+                          }}
+                          onFocus={(e) => e.target.style.borderColor = '#3b82f6'}
+                          onBlur={(e) => e.target.style.borderColor = '#e5e7eb'}
+                        />
+                        <p style={{ fontSize: '0.75rem', color: '#6b7280', marginTop: '0.25rem' }}>
+                          Main blog post image (optional).
                         </p>
                       </div>
                     </div>
@@ -1476,6 +1517,7 @@ export default function CreateBlog() {
             </div>
           </>
         )}
+      </div>
       </div>
       
       <Footer />

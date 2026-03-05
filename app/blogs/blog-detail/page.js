@@ -3,13 +3,14 @@
 import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { collection, getDocs, query, where, doc, getDoc } from 'firebase/firestore';
+import Link from 'next/link';
 // import { db } from '../../firebase12';
 import { blogDb } from '../../../firebaseConfig';
 import Headers from "../../../components/layout/header/Header";
-import PageHeader from "../../../components/layout/PageHeader";
+// import PageHeader from "../../../components/layout/PageHeader";
 import Footer from "../../../components/layout/footer/Footer";
 import CustomCursor from "../../../components/layout/CustomCursor";
-import { FaCalendarAlt, FaUser, FaArrowRight, FaClock, FaHome } from 'react-icons/fa';
+import { FaCalendarAlt, FaArrowRight, FaHome, FaLock, FaUser, FaKey } from 'react-icons/fa';
 import facebook from "../../../public/assets/images/blogs/facebook.png";
 import linkedin from "../../../public/assets/images/blogs/linkedin.png"; 
 import twitter from "../../../public/assets/images/blogs/twitter.png";
@@ -38,7 +39,7 @@ function BlogDetailContent() {
     // Replace each word with its link
     Object.entries(linkMap).forEach(([word, link]) => {
       const regex = new RegExp(`\\b${word}\\b`, 'gi');
-      processedText = processedText.replace(regex, `<a href="${link}" target="_blank" style="color: #3b82f6; text-decoration: underline; font-weight: 500;">${word}</a>`);
+      processedText = processedText.replace(regex, `<a href="${link}" target="_blank" style="color: #ef5226; text-decoration: underline; font-weight: 500;">${word}</a>`);
     });
     
     return processedText;
@@ -79,7 +80,7 @@ function BlogDetailContent() {
     Object.entries(anchorTags).forEach(([key, tag]) => {
       if (tag.word && tag.url) {
         const regex = new RegExp(`\\b${tag.word}\\b`, 'gi');
-        processedText = processedText.replace(regex, `<a href="${tag.url}" target="_blank" style="color: #3b82f6; text-decoration: underline; font-weight: 500;">${tag.word}</a>`);
+        processedText = processedText.replace(regex, `<a href="${tag.url}" target="_blank" style="color: #ef5226; text-decoration: underline; font-weight: 500;">${tag.word}</a>`);
       }
     });
     
@@ -194,7 +195,7 @@ function BlogDetailContent() {
     return (
       <div>
         <Headers />
-        <PageHeader title="Blog Detail" breadcrumbs={breadcrumbs} />
+        {/* <PageHeader title="Blog Detail" breadcrumbs={breadcrumbs} /> */}
  
         <div style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <div style={{ textAlign: 'center' }}>
@@ -220,7 +221,7 @@ function BlogDetailContent() {
     return (
       <div>
         <Headers />
-        <PageHeader title="Blog Detail" breadcrumbs={breadcrumbs} />
+        {/* <PageHeader title="Blog Detail" breadcrumbs={breadcrumbs} /> */}
         
         <div style={{ minHeight: '60vh', backgroundColor: '#f9fafb', padding: '2rem' }}>
           <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
@@ -228,7 +229,7 @@ function BlogDetailContent() {
             <button 
               onClick={() => router.push('/blogs/')}
               style={{
-                backgroundColor: '#2563eb',
+                backgroundColor: '#05a7cc',
                 color: 'white',
                 padding: '0.75rem 1.5rem',
                 borderRadius: '0.5rem',
@@ -252,22 +253,22 @@ function BlogDetailContent() {
     
     <div >
       <Headers />
-      <PageHeader title="Blog Detail" breadcrumbs={breadcrumbs} />
+      {/* <PageHeader title="Blog Detail" breadcrumbs={breadcrumbs} /> */}
       <CustomCursor />
       <style jsx>{` 
         .hero {
              background: transparent;
-            -webkit-border-radius: 1.5rem;
-            -moz-border-radius: 1.5rem;
-            border-radius: 1.5rem;
+            // -webkit-border-radius: 1.5rem;
+            // -moz-border-radius: 1.5rem;
+            // border-radius: 1.5rem;
             margin-bottom: 3rem;
             text-align: center;
             color: #ff5834;
             position: relative;
             overflow: hidden;
-            -webkit-box-shadow: 0 25px 50px -12px rgba(0, 0, 0, .25);
-            -moz-box-shadow: 0 25px 50px -12px rgba(0,0,0,.25);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, .25);
+            // -webkit-box-shadow: 0 25px 50px -12px rgba(0, 0, 0, .25);
+            // -moz-box-shadow: 0 25px 50px -12px rgba(0,0,0,.25);
+            // box-shadow: 0 25px 50px -12px rgba(0, 0, 0, .25);
         }
         .hero::before {
           content: '';
@@ -389,7 +390,7 @@ function BlogDetailContent() {
           margin-bottom:20px;
         }
         .content-sectiontwo{
-          color:#047791; 
+          color:#333; 
           font-weight: 600;
           font-style: Semi Bold;
           font-size: 25px;
@@ -417,7 +418,7 @@ function BlogDetailContent() {
           overflow: hidden;
         }
           .toc-card{ 
-            width: 390px;
+            width: 100%;
             height: auto;
             opacity: 1;
             gap: 15px;
@@ -427,7 +428,8 @@ function BlogDetailContent() {
             padding-right: 10px;
             padding-bottom: 10px;
             padding-left: 25px;
-            border: 2px solid #F8AF9B;
+            border-top: 4px solid #F8AF9B;
+            border-bottom: 4px solid #F8AF9B;
             box-shadow: 0px 0px 15px 0px #EF522633;
             box-shadow: 0px 0px 15px 0px #EF522626 inset;
           }
@@ -492,7 +494,7 @@ function BlogDetailContent() {
               transform: scale(1.1);
             }
        .author-content {
-        width: 390px;
+        width: 100%;
          }
 
          .author-info{
@@ -653,6 +655,7 @@ function BlogDetailContent() {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
           gap: 2rem;
+          align-items: stretch;
         }
         .related-card {
           background: white;
@@ -662,6 +665,9 @@ function BlogDetailContent() {
           transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
           cursor: pointer;
           position: relative;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
         }
         .related-card::before {
           content: '';
@@ -699,6 +705,9 @@ function BlogDetailContent() {
         }
         .related-content {
           padding: 2rem;
+          flex: 1;
+          display: flex;
+          flex-direction: column;
         }
         .related-title-text {
           font-size: 1.25rem;
@@ -713,6 +722,123 @@ function BlogDetailContent() {
           display: flex;
           align-items: center;
           gap: 0.5rem;
+          margin-bottom: 1rem;
+        }
+        .related-description {
+          flex: 1;
+          margin-bottom: 1.5rem;
+        }
+        
+        /* Blog Cards Styles - Same as main blogs page */
+        .blog-container {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 4rem 2rem;
+        }
+        .blog-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 2rem;
+        }
+        .blog-card {
+          background-color: white;
+          border-radius: 0.75rem;
+          overflow: hidden;
+          
+          cursor: pointer;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          box-shadow: 0 10px 20px rgba(173, 216, 230, .5), 0 6px 6px rgba(173, 216, 230, .7);
+         transition: transform .3s ease, box-shadow .3s ease;
+        }
+        .blog-card:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        .blog-image {
+          height: 240px;
+          background: #fff;
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 15px;
+        }
+        .blog-placeholder {
+          width: 60px;
+          height: 60px;
+          background-color: #cbd5e1;
+          border-radius: 0.5rem;
+        }
+        .blog-content {
+          padding: 1.5rem;
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+        }
+        .blog-date {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          margin-bottom: 1rem;
+          color: #64748b;
+          font-size: 0.875rem;
+        }
+        .blog-title {
+          font-size: 1.25rem;
+          font-weight: 600;
+          margin-bottom: 1rem;
+          color: #1e293b;
+          line-height: 1.4;
+        }
+        .blog-description {
+          color: #64748b;
+          margin-bottom: 1.5rem;
+          font-size: 0.875rem;
+          line-height: 1.6;
+          flex: 1;
+        }
+        .blog-read-more {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          color: #ef5226;
+          font-weight: 600;
+          font-size: 1rem;
+          justify-content: flex-end;
+        }
+        
+        @media (max-width: 1024px) {
+          .blog-container {
+            padding: 3rem 1.5rem;
+          }
+          .blog-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+          }
+        }
+        
+        @media (max-width: 640px) {
+          .blog-container {
+            padding: 2rem 1rem;
+          }
+          .blog-grid {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+          }
+          .blog-image {
+            height: 200px;
+          }
+          .blog-content {
+            padding: 1rem;
+          }
+          .blog-title {
+            font-size: 1.125rem;
+          }
+          .blog-description {
+            font-size: 0.8rem;
+          }
         }
         .back-button {
           display: inline-flex;
@@ -789,7 +915,79 @@ function BlogDetailContent() {
             height: auto; 
           }
             .author-content {
-        width: 390px;
+        width: 100%;
+         }
+
+         /* TOC mobile styles */
+         .toc-list {
+            margin: 15px 0px;
+            padding-left: 20px;
+         }
+         .toc-list a {
+            font-size: 14px;
+            line-height: 1.4;
+         }
+
+         /* Share section mobile styles */
+         .share-section {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 15px;
+            margin: 15px 0px;
+         }
+         .share-title {
+            font-size: 13px;
+         }
+         .share-icons {
+            gap: 8px;
+         }
+         .share-icon {
+            width: 35px;
+            height: 35px;
+         }
+
+         /* Content mobile optimizations */
+         .blog-content {
+            font-size: 16px;
+            line-height: 1.6;
+         }
+         .blog-content h2 {
+            font-size: 1.5rem;
+            margin: 1.5rem 0 1rem 0;
+         }
+         .blog-content h3 {
+            font-size: 1.3rem;
+            margin: 1.2rem 0 0.8rem 0;
+         }
+         .blog-content p {
+            margin-bottom: 1rem;
+         }
+         .blog-content ul, .blog-content ol {
+            margin: 1rem 0;
+            padding-left: 20px;
+         }
+         .blog-content li {
+            margin-bottom: 0.5rem;
+         }
+
+         /* Table of contents sidebar mobile */
+         .table-of-contents {
+            position: static;
+            margin-bottom: 2rem;
+            max-width: 100%;
+         }
+
+         /* Image mobile optimizations */
+         .blog-content img {
+            max-width: 100%;
+            height: auto;
+            margin: 1rem 0;
+         }
+
+         /* Button mobile styles */
+         .blog-detail-button {
+            padding: 0.6rem 1.2rem;
+            font-size: 14px;
          }
         }
         .link-manager-section {
@@ -874,13 +1072,25 @@ function BlogDetailContent() {
           background: linear-gradient(135deg, #059669 0%, #047857 100%);
           transform: translateY(-1px);
         }
+          .ep-page-header-section2{
+              min-height: 200px;
+                      padding: 160px 0px 10px;
+          }
+      @media (max-width: 768px) {
+      .hero{
+      margin-bottom:0px;
+      }
+      .ep-page-header-section2{
+      min-height: 150px;
+      padding: 100px 0px 10px;
+      }
       `}</style>
+     <div className="ep-page-header-section2 position-relative" >
       <div className='container'>
       <div className="blog-layout row">
         {/* Left Column - Main Content */}
-        <div className="main-content col-md-8">
-          {/* Hero Section */}
-          <div className="hero">
+        <div className="main-content col-md-12">
+           <div className="hero">
             {blog.brocher?.imageUrl ? (
               <img src={blog.brocher.imageUrl} alt={blog.title} className="img-fluid" />
             ) : (
@@ -889,6 +1099,17 @@ function BlogDetailContent() {
             <div className="hero-overlay"></div>
             {/* <h1 className="hero-title">{blog.title}</h1> */}
           </div>
+        </div>
+        <div className="main-content col-md-8">
+          {/* Hero Section */}
+          {/* <div className="hero">
+            {blog.brocher?.imageUrl ? (
+              <img src={blog.brocher.imageUrl} alt={blog.title} className="img-fluid" />
+            ) : (
+              <div style={{ width: '100%', height: '100%', background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)' }}></div>
+            )}
+            <div className="hero-overlay"></div> 
+          </div> */}
 
           {/* Main Heading + Intro */}
           {blog.contentSection && Object.keys(blog.contentSection).map((sectionKey) => {
@@ -1044,14 +1265,16 @@ function BlogDetailContent() {
           {/* Author Card */}
           <div className="author-card">
             <div className="author-content">
-              
               <div className="author-info">
-                <img 
-                  src="https://res.cloudinary.com/techclouderp/image/upload/v1770289281/blogimg_mhjwse.png" 
-                  alt="Author" 
-                  className='author-info-img'
-                  
-                />
+                {blog.blogImage ? (
+                  <img src={blog.blogImage} alt="Blog" className='author-info-img' />
+                ) : (
+                  <img 
+                    src="https://res.cloudinary.com/techclouderp/image/upload/v1772700930/Blog_1_fqfnaw.webp" 
+                    alt="Blog" 
+                    className='author-info-img'
+                  />
+                )}
               </div>
             </div>
           </div>
@@ -1109,6 +1332,80 @@ function BlogDetailContent() {
       </div>
       </div>
 
+      {/* Related Blogs Section */}
+      {relatedBlogs.length > 0 && (
+        <div className="blog-container">
+          <h2 className="related-title">Latest Blogs</h2>
+          <div className="blog-grid">
+            {relatedBlogs.map((relatedBlog) => (
+              <Link 
+                key={relatedBlog.id} 
+                href={`/blogs/blog-detail?slug=${relatedBlog.slug}`}
+                style={{ textDecoration: 'none' }}
+              >
+                <div className="blog-card">
+                  <div className="blog-image">
+                    {relatedBlog.brocher?.imageUrl ? (
+                      <img 
+                        src={relatedBlog.brocher.imageUrl} 
+                        alt={relatedBlog.title}
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'cover'
+                        }}
+                      />
+                    ) : relatedBlog.content?.section2?.section1?.image?.imageUrl ? (
+                      <img 
+                        src={relatedBlog.content.section2.section1.image.imageUrl} 
+                        alt={relatedBlog.title}
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'cover'
+                        }}
+                      />
+                    ) : (
+                      <div className="blog-placeholder"></div>
+                    )}
+                  </div>
+                  <div className="blog-content">
+                    <div className="blog-date">
+                      <FaCalendarAlt />
+                      {formatDate(relatedBlog.createdAt)}
+                    </div>
+                    <h3 className="blog-title">
+                      {relatedBlog.title || 'Untitled Blog'}
+                    </h3>
+                    <div className="blog-description">
+                      <p style={{
+                        display: '-webkit-box',
+                        WebkitLineClamp: 2,
+                        WebkitBoxOrient: 'vertical',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                        margin: 0,
+                        lineHeight: '1.6'
+                      }}>
+                        {relatedBlog.content?.section2?.section1?.text || 
+                         relatedBlog.brocher?.text || 
+                         (relatedBlog.content ? relatedBlog.content.substring(0, 150) + '...' : 
+                         'Read more about this blog...')}
+                      </p>
+                    </div>
+                    <div className="blog-read-more">
+                      <span>
+                        View More
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
+</div>
       <Footer />
       <CustomCursor />
     </div>

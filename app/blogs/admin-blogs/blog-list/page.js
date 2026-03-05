@@ -9,7 +9,8 @@ import Header from "../../../../components/layout/header/Header";
 import PageHeader from "../../../../components/layout/PageHeader";
 import Footer from "../../../../components/layout/footer/Footer";
 import CustomCursor from "../../../../components/layout/CustomCursor";
-import { FaHome } from 'react-icons/fa';
+import { FaHome, FaLock, FaUser, FaKey } from 'react-icons/fa';
+
 
 export default function BlogList() {
   const router = useRouter();
@@ -127,22 +128,43 @@ export default function BlogList() {
     return (
       <>
         <Header/>
-        <PageHeader title="Blog List - Authentication Required" breadcrumbs={breadcrumbs}/>
-        <div style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <div style={{ maxWidth: '400px', width: '100%', margin: '0 1rem' }}>
-            <div style={{
-              backgroundColor: 'white',
-              borderRadius: '0.5rem',
-              boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
-              padding: '2rem'
-            }}>
-              <h2 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1.5rem', textAlign: 'center', color: '#1f2937' }}>
-                Authentication Required
+         <style jsx>{`
+      .ep-page-header-section2{
+      min-height: 150px;
+      padding: 100px 0px;
+      }
+       @media (max-width: 768px) {
+      
+      .ep-page-header-section2{
+      min-height: 150px;
+      padding: 100px 0px;
+      }
+      `}</style>
+        {/* <PageHeader title="Blog List - Secure Login" breadcrumbs={breadcrumbs}/> */}
+         <div className="ep-page-header-section2">
+             <div style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem' }}>
+          <div style={{ 
+            backgroundColor: 'white', 
+            borderRadius: '1rem', 
+            boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1)', 
+            padding: '3rem', 
+            width: '100%', 
+            maxWidth: '400px'
+          }}>
+            <div style={{ textAlign: 'center', marginBottom: '2rem', minHeight:'30vh' }}>
+              <FaLock style={{ fontSize: '3rem', color: '#ff6b00', marginBottom: '1rem' }} />
+              <h2 style={{ fontSize: '1.8rem', fontWeight: 'bold', color: '#1e293b', marginBottom: '0.5rem' }}>
+                Secure Login
               </h2>
+              <p style={{ color: '#6b7280', fontSize: '1rem' }}>
+                Please login to Manage blog 
+              </p>
+            </div>
               
-              <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                 <div>
                   <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500', color: '#374151', fontSize: '0.875rem' }}>
+                    <FaUser style={{ marginRight: '0.5rem', color: '#6b7280' }} />
                     Username
                   </label>
                   <input
@@ -150,14 +172,14 @@ export default function BlogList() {
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     required
-                    placeholder="Enter username"
                     style={{
                       width: '100%',
-                      padding: '0.75rem',
+                      padding: '0.75rem 1rem',
                       border: '2px solid #e5e7eb',
                       borderRadius: '0.5rem',
                       fontSize: '1rem',
-                      transition: 'all 0.2s ease'
+                      transition: 'all 0.2s ease',
+                      backgroundColor: 'white'
                     }}
                     onFocus={(e) => e.target.style.borderColor = '#3b82f6'}
                     onBlur={(e) => e.target.style.borderColor = '#e5e7eb'}
@@ -166,6 +188,7 @@ export default function BlogList() {
                 
                 <div>
                   <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500', color: '#374151', fontSize: '0.875rem' }}>
+                    <FaKey style={{ marginRight: '0.5rem', color: '#6b7280' }} />
                     Password
                   </label>
                   <input
@@ -173,14 +196,14 @@ export default function BlogList() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
-                    placeholder="Enter password"
                     style={{
                       width: '100%',
-                      padding: '0.75rem',
+                      padding: '0.75rem 1rem',
                       border: '2px solid #e5e7eb',
                       borderRadius: '0.5rem',
                       fontSize: '1rem',
-                      transition: 'all 0.2s ease'
+                      transition: 'all 0.2s ease',
+                      backgroundColor: 'white'
                     }}
                     onFocus={(e) => e.target.style.borderColor = '#3b82f6'}
                     onBlur={(e) => e.target.style.borderColor = '#e5e7eb'}
@@ -191,9 +214,9 @@ export default function BlogList() {
                   <div style={{
                     backgroundColor: '#fef2f2',
                     border: '1px solid #fecaca',
-                    borderRadius: '0.375rem',
+                    borderRadius: '0.5rem',
                     padding: '0.75rem',
-                    color: '#dc2626',
+                    color: '#ef5226',
                     fontSize: '0.875rem'
                   }}>
                     {authError}
@@ -203,47 +226,26 @@ export default function BlogList() {
                 <button
                   type="submit"
                   style={{
-                    padding: '0.75rem 1.5rem',
-                    backgroundColor: '#3b82f6',
+                    backgroundColor: '#ef5226',
                     color: 'white',
-                    border: 'none',
+                    padding: '0.75rem 1.5rem',
                     borderRadius: '0.5rem',
                     fontSize: '1rem',
                     fontWeight: '600',
                     cursor: 'pointer',
-                    transition: 'all 0.2s ease'
+                    transition: 'all 0.2s ease',
+                    border: 'none'
                   }}
-                  onMouseOver={(e) => e.target.style.backgroundColor = '#2563eb'}
-                  onMouseOut={(e) => e.target.style.backgroundColor = '#3b82f6'}
+                  onMouseOver={(e) => e.target.style.backgroundColor = '#ef5226'}
+                  onMouseOut={(e) => e.target.style.backgroundColor = '#ef5226'}
                 >
-                  Login
+                  Login to Manage Blog
                 </button>
               </form>
-              
-              {/* <div style={{ 
-                marginTop: '1.5rem', 
-                padding: '1rem', 
-                backgroundColor: '#f8fafc', 
-                borderRadius: '0.375rem',
-                border: '1px solid #e2e8f0'
-              }}>
-                <p style={{ fontSize: '0.875rem', color: '#6b7280', marginBottom: '0.5rem' }}>
-                  <strong>Credentials:</strong>
-                </p>
-                <p style={{ fontSize: '0.75rem', color: '#6b7280', margin: '0.25rem 0' }}>
-                  Username: admin | Password: TECH@WEB-Blog2026
-                </p>
-                <p style={{ fontSize: '0.75rem', color: '#6b7280', margin: '0.25rem 0' }}>
-                  Username: blogadmin | Password: TECH@WEB-Blog2026
-                </p>
-                <p style={{ fontSize: '0.75rem', color: '#6b7280', margin: '0.25rem 0' }}>
-                  Username: techcloud | Password: TECH@WEB-Blog2026
-                </p>
-              </div> */}
             </div>
           </div>
-        </div>
-        <Footer/>
+         </div>
+         <Footer/>
         <CustomCursor/>
       </>
     );
@@ -253,7 +255,9 @@ export default function BlogList() {
     return (
       <>
         <Header/>
+        <div className="ep-page-header-section2">
         <PageHeader title="Blog List" breadcrumbs={breadcrumbs}/>
+      </div>
         <div style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <div style={{ textAlign: 'center' }}>
             <div style={{ 
@@ -277,17 +281,25 @@ export default function BlogList() {
   return (
     <>
       <Header/>
-      <PageHeader title="Blog List" breadcrumbs={breadcrumbs}/>
       
+      <div className="ep-page-header-section2">
+        <PageHeader title="Blog List" breadcrumbs={breadcrumbs}/>
+      </div>
+      <style jsx>{`
+      .ep-page-header-section2{
+      min-height: 150px;
+      padding: 100px 0px;
+      }
+      `}</style>
       <div style={{ minHeight: '60vh', backgroundColor: '#f9fafb', padding: '2rem' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           
           {/* Create New Blog Button */}
           <div style={{ marginBottom: '2rem', textAlign: 'right' }}>
             <Link
-              href="/blogs/blogs/create-blog"
+              href="/blogs/admin-blogs/create-blog"
               style={{
-                backgroundColor: '#2563eb',
+                backgroundColor: '#05a7cc',
                 color: 'white',
                 padding: '0.75rem 1.5rem',
                 borderRadius: '0.5rem',
@@ -355,7 +367,7 @@ export default function BlogList() {
                               Read More
                             </Link>
                             <Link
-                              href={`/blogs/blogs/edit-blog?id=${blog.id}`}
+                              href={`/blogs/admin-blogs/edit-blog?id=${blog.id}`}
                               style={{
                                 backgroundColor: '#f59e0b',
                                 color: 'white',
