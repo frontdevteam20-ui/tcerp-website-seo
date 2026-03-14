@@ -57,7 +57,7 @@ const Header = () => {
         </div>
       </nav>
 
-      {/* mobile navbar part start */}
+      {/* mobile navbar part start  */}
       <MobileMenu/>
       {/* mobile navbar part end */}
     </header>
