@@ -5,5 +5,5 @@ export const partnerData = [
   { link: '/products/production', imgSrc: "/partner/ecomm.png", alt: 'Ecommerce' },
   { link: '/products/inventory', imgSrc: "/partner/trading.png", alt: 'Trading' },
   { link: '/products/purchase-management', imgSrc: "/partner/POS.png", alt: 'POS' },
-  { link: '/products/sales', imgSrc: "/partner/CRMD.png", alt: 'CRM' },
+  { link: '/products/sales', imgSrc: "/partner/CRMD.png", alt: 'CRM' }, 
   ];
