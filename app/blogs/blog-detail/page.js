@@ -378,12 +378,14 @@ function BlogDetailContent() {
         .section-description {
           font-size: 1.125rem;
           line-height: 1.8;
-          color: #475569;
-          
+          color: #475569; 
           white-space: pre-wrap;
-          
           margin-bottom:0px;
+          margin: 0 0;
         }
+           
+  
+
         .content-section{
           margin-bottom:20px;
         }

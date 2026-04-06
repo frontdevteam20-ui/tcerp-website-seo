@@ -129,7 +129,7 @@ const FooterTwo = () => {
                   </div>
                   <div className="col-lg-6">
                     <div className="footer-menu text-center text-lg-end">
-                      <ul className="list-unstyled">
+                      <ul className="list-unstyled" style={{marginBottom: "1rem"}}>
                         <li className="d-inline-block"><Link href="#">Trams & Condition</Link></li>
                         <li className="d-inline-block"><Link href="#">Privacy Policy</Link></li>
                         <li className="d-inline-block"><Link href="/contact-us">Contact Us</Link></li>
